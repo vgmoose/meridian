@@ -26,7 +26,7 @@ Not all plugins will be detailed here, but some notable ones to test out shall b
 #### ping
 The ping plugin wil return 200 OK.
 ```
-curl http://localhost:8080/ping
+curl -D - http://localhost:8080/ping
 ```
 
 
