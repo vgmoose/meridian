@@ -3,6 +3,9 @@
 # built in libraries
 import os, sys, imp
 
+# local library
+import baseresponder
+
 sys.dont_write_bytecode = True
 
 # import necessary external libraries
@@ -21,8 +24,16 @@ plugins = {}
 plugin_dir = os.listdir("plugins")
 for filename in plugin_dir:
 	if filename.endswith(".py"):
-		name = filename.rstrip(".py")
+		name = filename.replace(".py", "")
 		plugins[name] = __import__(name)
+        
+responders = {}
+
+# load responders from plugins and call init functions
+for name in plugins:
+	module = plugins[name]
+	if hasattr(module, "Responder"):
+		responders[name] = module.Responder()
 
 class RESTServer(object):
 	@cherrypy.expose
@@ -35,7 +46,7 @@ class RESTServer(object):
 
 		# delegate its arguments to the appropriate plugin
 		if route in plugins:
-			output = plugins[route].process(args, kwargs)
+			output = responders[route].process(args, kwargs)
 			if isinstance(output, tuple):
 				cherrypy.response.status = output[0]
 				return output[1]
@@ -46,7 +57,7 @@ class RESTServer(object):
 				return output
 		else:
 			cherrypy.response.status = 404
-			return "Undefined!<br/>No route for: "+route+"<br/>You gave me: "+str(kwargs)
+			return "Undefined!<br/>No responder for: "+route+"<br/>You gave me:"+str(kwargs)
 					
 
 cherrypy.quickstart(RESTServer())

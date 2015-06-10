@@ -1,11 +1,11 @@
 import threading
 
-class BaseResponder:
+class BaseResponder(object):
 	# all plugins will extend this BaseResponder, but implementing
 	# any of the methods are optional depending on what the plugin
 	# needs to accomplish
 
-	def init(self):
+	def __init__(self):
 		# code to be run when the plugin is first imported
 
 		# returns true if initialization is successful,
