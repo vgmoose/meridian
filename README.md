@@ -32,4 +32,4 @@ curl -D - http://localhost:8080/ping
 
 #### shell
 The shell plugin will execute a shell command from the "cmd" parameter. An example of this is below. It also keeps track of the curent directory, and using "cd" will affect subsequent requests to this plugin.
-[http://localhost:8080/shell?echo hello there](http://localhost:8080/shell?echo hello there)
+[http://localhost:8080/shell?cmd=echo hello there](http://localhost:8080/shell?cmd=echo hello there)
