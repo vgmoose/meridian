@@ -22,7 +22,6 @@ class BaseResponder(object):
 		# args will contain the URL from the root, with 
 		# args[0] containing the plugin name (much like 
 		# sys.args[0] would contain the program name)
-		# eg. /pluginname/arg1/arg2/arg3/arg4/arg5
 		
 		# data will contain a dict of keys and values
 		# that has been passed through either get or post
@@ -76,6 +75,4 @@ class BaseResponder(object):
 
 		return True
 			
-		
-
 

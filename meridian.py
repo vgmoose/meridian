@@ -33,7 +33,10 @@ responders = {}
 for name in plugins:
 	module = plugins[name]
 	if hasattr(module, "Responder"):
-		responders[name] = module.Responder()
+		try:
+			responders[name] = module.Responder()
+		except Exception, e:
+			print("Issue loading "+name+" plugin! " + e.message)
 
 class RESTServer(object):
 	@cherrypy.expose
