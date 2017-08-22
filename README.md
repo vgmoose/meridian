@@ -29,12 +29,12 @@ The ping plugin wil return 200 OK.
 curl -D - http://localhost:8080/ping
 ```
 
-
 #### shell
 The shell plugin will execute a shell command from the "cmd" parameter. An example of this is below. It also keeps track of the curent directory, and using "cd" will affect subsequent requests to this plugin.
-[http://localhost:8080/shell?cmd=echo hello there](http://localhost:8080/shell?cmd=echo hello there)
+eg. [http://localhost:8080/shell?cmd=echo hello there](http://localhost:8080/shell?cmd=echo%20hello%20there)
 
 
 ### Other Plugins
 Check the appropriate config directory for detailed information on a specific package:
-[japanese](https://github.com/vgmoose/meridian/tree/master/config/japanese/)
+
+- [japanese](https://github.com/vgmoose/meridian/tree/master/config/japanese/)
